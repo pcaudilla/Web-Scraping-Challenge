@@ -25,14 +25,14 @@
     <div class="col-md-8">
 
       <h2>Featured Mars Image</h2>
-      <img src="https://www.jpl.nasa.gov//spaceimages/images/mediumsize/PIA19974_ip.jpg" width="800" height="600" alt="featured-img">
+      <img src="{{ news.featured_image_url }}" width="800" height="600" alt="featured-image">
 
     </div>
 
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Current Weather on Mars</div>
-            <div class="panel-body">Sol 361 (2019-12-02) low -98.2ºC (-144.7ºF) high -21.2ºC (-6.2ºF)winds from the SSW at 4.9 m/s (11.0 mph) gusting to 18.9 m/s (42.3 mph)pressure at 6.70</div>
+            <div class="panel-body"> {{ news.mars_weather }} </div>
           </div>
            
           <br>
@@ -102,7 +102,7 @@
 
       <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg" width="600" height="600" alt="cerberus">
+            <img class="card-img-top" src="{{ news.cerberus_url }}" width="600" height="600" alt="cerberus">
             <div class="card-body">
               <p class="card-text">Cerberus Hemisphere</p>
             </div>
@@ -111,7 +111,7 @@
     
       <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg" width="600" height="600" alt="cerberus">
+            <img class="card-img-top" src="{{ news.schiaparelli_url }}" width="600" height="600" alt="cerberus">
             <div class="card-body">
               <p class="card-text">Schiaparelli Hemisphere</p>
             </div>
@@ -120,7 +120,7 @@
 
       <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg" width="600" height="600" alt="cerberus">
+            <img class="card-img-top" src="{{ news.syrtis_major_url }}" width="600" height="600" alt="cerberus">
             <div class="card-body">
               <p class="card-text">Syrtis Major Hemisphere</p>
             </div>
@@ -129,7 +129,7 @@
 
       <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg" width="600" height="600" alt="cerberus">
+            <img class="card-img-top" src="{{ news.valles_marineris_url }}" width="600" height="600" alt="cerberus">
             <div class="card-body">
               <p class="card-text">Valles Marineris Hemisphere</p>
             </div>

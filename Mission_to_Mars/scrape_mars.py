@@ -28,41 +28,73 @@ def scrape():
     mars_data["news_p"] = excerpt.replace('\n', '')
 
     # Get Featured URL
-    #url2 = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-    #html2 = browser(url2)
-    #soup = bs(html2, "html.parser") 
+    browser = init_browser()
+    url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    browser.visit(url)
 
-    #link = soup.find('div', class_='default floating_text_area ms-layer')
-    #image_url = link.a.attrs['data-fancybox-href']
-    #mars_data["featured_image_url"] = 'https://www.jpl.nasa.gov/' + image_url
+    html = browser.html 
+    soup = bs(html, "html.parser") 
+
+    link = soup.find('div', class_='default floating_text_area ms-layer')
+    image_url = link.a.attrs['data-fancybox-href']
+    mars_data["featured_image_url"] = 'https://www.jpl.nasa.gov/' + image_url
 
     #  Get Mars weather
-    #url = 'https://twitter.com/marswxreport?lang=en'
-    #html = browser.html
-    #soup = bs(html, "html.parser")
+    browser = init_browser()
+    url = 'https://twitter.com/marswxreport?lang=en'
+    browser.visit(url)
+    html = browser.html
+    soup = bs(html, "html.parser")
 
-    #marsweather = soup.find('p', class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")
-    #mars_weather = marsweather.text
+    weather = soup.find('p', class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")
+    marsweather = weather.text
+    mars_data["mars_weather"] = marsweather.replace('\n', '')
 
      #  Get Hemisphere images
-    #url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced'
-    #response = requests.get(url)
-    #soup = BeautifulSoup(response.text, 'lxml')
+    browser = init_browser()
+    url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced'
+    browser.visit(url)
+    html = browser.html
+    soup = bs(html, "html.parser")
 
-     #  Store data in a dictionary
-    #mars_data = {"news_title": news_title,
-    #    "news_p": news_p,
-    #    "featured_image_url": featured_image_url,
-    #    "mars_weather": max_temp}
+    link = soup.find('div', class_='downloads')
+    mars_data["cerberus_url"] = link.a.attrs['href']
 
+    browser = init_browser()
+    url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced'
+    browser.visit(url)
+    html = browser.html
+    soup = bs(html, "html.parser")
+
+    link = soup.find('div', class_='downloads')
+    mars_data["schiaparelli_url"] = link.a.attrs['href']
+
+    browser = init_browser()
+    url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced'
+    browser.visit(url)
+    html = browser.html
+    soup = bs(html, "html.parser")
+
+    link = soup.find('div', class_='downloads')
+    mars_data["syrtis_major_url"] = link.a.attrs['href']
+
+    browser = init_browser()
+    url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced'
+    browser.visit(url)
+    html = browser.html
+    soup = bs(html, "html.parser")
+
+    link = soup.find('div', class_='downloads')
+    mars_data["valles_marineris_url"] = link.a.attrs['href']
+    
      #  Close the browser after scraping
-    #browser.quit()
+    browser.quit()
 
     # Return results
     return mars_data
 
-if __name__ == "__main__":
-    print(scrape())
+#if __name__ == "__main__":
+#    print(scrape())
 
 
 
